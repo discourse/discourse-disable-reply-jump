@@ -1,0 +1,5 @@
+en:
+  discourse_disable_jump_reply:
+    label: Scrolling behavior after post
+    instructions: This setting is per browser.
+    disable_jump_after_i_reply: Disable jump to my post after I reply
