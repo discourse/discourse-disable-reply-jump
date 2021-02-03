@@ -1,6 +1,5 @@
-import cookie from "discourse/lib/cookie";
 import ScrollingPostStream from "discourse/components/scrolling-post-stream";
-import COOKIE_NAME from "discourse/initializer/init-discourse-disable-jump-reply";
+import { SETTING_NAME } from "discourse/initializers/init-discourse-disable-jump-reply";
 
 export default {
   name: "extend-scrolling-post-stream-for-discourse-jump-reply",
@@ -10,7 +9,7 @@ export default {
   initialize() {
     ScrollingPostStream.reopen({
       _posted(staged) {
-        if (cookie(COOKIE_NAME) === "1") {
+        if (localStorage.getItem(SETTING_NAME)) {
           return;
         }
 

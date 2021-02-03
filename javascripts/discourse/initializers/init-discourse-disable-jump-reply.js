@@ -1,7 +1,6 @@
-import cookie, { removeCookie } from "discourse/lib/cookie";
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-export const COOKIE_NAME = "discourse-disable-jump-to-reply";
+export const SETTING_NAME = "discourse-disable-jump-to-reply";
 
 export default {
   name: "init-discourse-disable-jump-reply",
@@ -14,18 +13,15 @@ export default {
         {
           setupComponent(args, component) {
             component.setProperties({
-              isDisabledJumpReply: cookie(COOKIE_NAME) === "1",
+              isDisabledJumpReply: localStorage.getItem(SETTING_NAME),
               actions: {
                 onChangeIsDisabledJumpReply(isChecked) {
                   component.set("isDisabledJumpReply", isChecked);
 
                   if (isChecked) {
-                    cookie(COOKIE_NAME, "1", {
-                      path: "/",
-                      expires: 9999,
-                    });
+                    localStorage.setItem(SETTING_NAME, true);
                   } else {
-                    removeCookie(COOKIE_NAME, { path: "/", expires: 1 });
+                    localStorage.setItem(SETTING_NAME, false);
                   }
                 },
               },
