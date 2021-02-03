@@ -1,7 +1,7 @@
 import cookie, { removeCookie } from "discourse/lib/cookie";
 import { withPluginApi } from "discourse/lib/plugin-api";
 
-const COOKIE_NAME = "ddjr";
+export const COOKIE_NAME = "ddjr";
 
 export default {
   name: "init-discourse-disable-jump-reply",
