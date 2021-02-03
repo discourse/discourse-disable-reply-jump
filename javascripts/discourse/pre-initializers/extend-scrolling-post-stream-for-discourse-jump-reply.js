@@ -9,7 +9,7 @@ export default {
   initialize() {
     ScrollingPostStream.reopen({
       _posted(staged) {
-        if (localStorage.getItem(SETTING_NAME)) {
+        if (localStorage.getItem(SETTING_NAME) === "true") {
           return;
         }
 

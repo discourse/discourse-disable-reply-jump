@@ -9,9 +9,8 @@ export default {
   initialize() {
     Composer.reopen({
       save(force, options = {}) {
-        options.jump = localStorage.getItem(SETTING_NAME)
-          ? false
-          : options.jump;
+        options.jump =
+          localStorage.getItem(SETTING_NAME) === "true" ? false : options.jump;
 
         this._super(force, options);
       },

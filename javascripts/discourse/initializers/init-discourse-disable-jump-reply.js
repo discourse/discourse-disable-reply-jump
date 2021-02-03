@@ -13,7 +13,8 @@ export default {
         {
           setupComponent(args, component) {
             component.setProperties({
-              isDisabledJumpReply: localStorage.getItem(SETTING_NAME) === true,
+              isDisabledJumpReply:
+                localStorage.getItem(SETTING_NAME) === "true",
               actions: {
                 onChangeIsDisabledJumpReply(isChecked) {
                   component.set("isDisabledJumpReply", isChecked);
