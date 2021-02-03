@@ -13,16 +13,11 @@ export default {
         {
           setupComponent(args, component) {
             component.setProperties({
-              isDisabledJumpReply: localStorage.getItem(SETTING_NAME),
+              isDisabledJumpReply: localStorage.getItem(SETTING_NAME) === true,
               actions: {
                 onChangeIsDisabledJumpReply(isChecked) {
                   component.set("isDisabledJumpReply", isChecked);
-
-                  if (isChecked) {
-                    localStorage.setItem(SETTING_NAME, true);
-                  } else {
-                    localStorage.setItem(SETTING_NAME, false);
-                  }
+                  localStorage.setItem(SETTING_NAME, isChecked);
                 },
               },
             });
