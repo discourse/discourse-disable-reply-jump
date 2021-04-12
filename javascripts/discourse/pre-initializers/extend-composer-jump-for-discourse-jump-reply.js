@@ -1,5 +1,5 @@
 import Composer from "discourse/controllers/composer";
-import { SETTING_NAME } from "discourse/initializers/init-discourse-disable-jump-reply";
+import { SETTING_NAME } from "../initializers/init-discourse-disable-jump-reply";
 
 export default {
   name: "extend-composer-jump-for-discourse-jump-reply",
