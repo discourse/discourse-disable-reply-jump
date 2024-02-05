@@ -1,13 +1,9 @@
 import Component from "@glimmer/component";
-import { inject as service } from "@ember/service";
-import DButton from "discourse/components/d-button";
-import eq from "truth-helpers/helpers/eq";
-import i18n from "discourse-common/helpers/i18n";
+import { tracked } from "@glimmer/tracking";
 import { Input } from "@ember/component";
 import { on } from "@ember/modifier";
-import { fn } from "@ember/helper";
-import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
+import i18n from "discourse-common/helpers/i18n";
 
 export const SETTING_NAME = "discourse-disable-jump-to-reply";
 
