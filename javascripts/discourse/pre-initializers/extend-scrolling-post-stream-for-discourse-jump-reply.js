@@ -1,5 +1,5 @@
 import ScrollingPostStream from "discourse/components/scrolling-post-stream";
-import { SETTING_NAME } from "../initializers/init-discourse-disable-jump-reply";
+import { SETTING_NAME } from "../components/disable-jump-reply-preference";
 
 export default {
   name: "extend-scrolling-post-stream-for-discourse-jump-reply",
