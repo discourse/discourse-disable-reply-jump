@@ -36,7 +36,7 @@ RSpec.describe "Disable Reply Jump", system: true do
 
     page.execute_script("localStorage.setItem('discourse-disable-jump-to-reply', 'true');")
 
-    find("#post_1 .reply").click
+    find(".timeline-footer-controls .reply-to-post").click
     find(".d-editor-textarea-wrapper textarea").set("This is my test reply content")
     find(".save-or-cancel .create").click
 
