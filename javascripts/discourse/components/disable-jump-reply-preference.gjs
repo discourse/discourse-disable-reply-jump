@@ -1,6 +1,5 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { Input } from "@ember/component";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import i18n from "discourse-common/helpers/i18n";
@@ -24,10 +23,10 @@ export default class DisableJumpReplyPreference extends Component {
 
       <div class="controls">
         <label class="checkbox-label">
-          <Input
-            @type="checkbox"
-            @checked={{this.isDisabledJumpReply}}
+          <input
             {{on "click" this.onChangeIsDisabledJumpReply}}
+            type="checkbox"
+            checked={{this.isDisabledJumpReply}}
           />
           {{i18n
             (themePrefix

@@ -7,16 +7,12 @@ RSpec.describe "Disable Reply Jump", system: true do
   fab!(:post_1) {
     Fabricate(:post, raw: "long\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\n", topic: topic_1)
   }
-  fab!(:post_2) {
-    Fabricate(:post, topic: topic_1)
-  }
-  fab!(:post_3) {
-    Fabricate(:post, topic: topic_1)
-  }
+  fab!(:post_2) { Fabricate(:post, topic: topic_1) }
+  fab!(:post_3) { Fabricate(:post, topic: topic_1) }
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1], refresh_auto_groups: true) }
 
-  before do 
+  before do
     sign_in(user)
   end
 
@@ -36,7 +32,7 @@ RSpec.describe "Disable Reply Jump", system: true do
   end
 
   it "scroll position does not change after replying when localStorage is set" do
-    visit("/t/#{topic_1.id}")
+    visit(topic_1.url)
 
     page.execute_script("localStorage.setItem('discourse-disable-jump-to-reply', 'true');")
 
@@ -48,8 +44,7 @@ RSpec.describe "Disable Reply Jump", system: true do
     expect(page).not_to have_css(".saving-text")
 
     scroll_position = page.evaluate_script("window.scrollY;")
-  
+
     expect(scroll_position).to eq(0)
   end
- 
 end

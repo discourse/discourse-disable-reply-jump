@@ -1,4 +1,4 @@
-import ScrollingPostStream from "discourse/components/scrolling-post-stream";
+import { withPluginApi } from "discourse/lib/plugin-api";
 import { SETTING_NAME } from "../components/disable-jump-reply-preference";
 
 export default {
@@ -6,14 +6,18 @@ export default {
   before: "inject-discourse-objects",
 
   initialize() {
-    ScrollingPostStream.reopen({
-      _posted() {
-        if (localStorage.getItem(SETTING_NAME) === "true") {
-          return;
-        }
+    withPluginApi("1.0.0", (api) => {
+      api.modifyClass("component:scrolling-post-stream", {
+        pluginId: "discourse-disable-reply-jump",
 
-        this._super(...arguments);
-      },
+        _posted() {
+          if (localStorage.getItem(SETTING_NAME) === "true") {
+            return;
+          }
+
+          this._super(...arguments);
+        },
+      });
     });
   },
 };
