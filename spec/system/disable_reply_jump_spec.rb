@@ -4,17 +4,20 @@ RSpec.describe "Disable Reply Jump", system: true do
   let!(:theme) { upload_theme_component }
 
   fab!(:topic_1) { Fabricate(:topic) }
-  fab!(:post_1) {
-    Fabricate(:post, raw: "long\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\n", topic: topic_1)
-  }
+  fab!(:post_1) do
+    Fabricate(
+      :post,
+      raw:
+        "long\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\nlong\ncontent\nto\nforce\nscrolling\non\npage\n",
+      topic: topic_1,
+    )
+  end
   fab!(:post_2) { Fabricate(:post, topic: topic_1) }
   fab!(:post_3) { Fabricate(:post, topic: topic_1) }
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1], refresh_auto_groups: true) }
 
-  before do
-    sign_in(user)
-  end
+  before { sign_in(user) }
 
   it "user interface setting is present" do
     visit("/my/preferences/interface")
