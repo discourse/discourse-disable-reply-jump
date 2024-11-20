@@ -7,7 +7,7 @@ export default {
 
   initialize() {
     withPluginApi("1.0.0", (api) => {
-      api.modifyClass("controller:composer", {
+      api.modifyClass("service:composer", {
         pluginId: "discourse-disable-reply-jump",
 
         save(force, options = {}) {
