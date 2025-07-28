@@ -1,3 +1,4 @@
+import { withSilencedDeprecations } from "discourse/lib/deprecated";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { SETTING_NAME } from "../components/disable-jump-reply-preference";
 
@@ -7,16 +8,18 @@ export default {
 
   initialize() {
     withPluginApi("1.0.0", (api) => {
-      api.modifyClass("component:scrolling-post-stream", {
-        pluginId: "discourse-disable-reply-jump",
+      withSilencedDeprecations("discourse.post-stream-widget-overrides", () => {
+        api.modifyClass("component:scrolling-post-stream", {
+          pluginId: "discourse-disable-reply-jump",
 
-        _posted() {
-          if (localStorage.getItem(SETTING_NAME) === "true") {
-            return;
-          }
+          _posted() {
+            if (localStorage.getItem(SETTING_NAME) === "true") {
+              return;
+            }
 
-          this._super(...arguments);
-        },
+            this._super(...arguments);
+          },
+        });
       });
     });
   },
