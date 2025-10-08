@@ -6,7 +6,7 @@ export default {
   before: "inject-discourse-objects",
 
   initialize() {
-    withPluginApi("1.0.0", (api) => {
+    withPluginApi((api) => {
       api.modifyClass("service:composer", {
         pluginId: "discourse-disable-reply-jump",
 

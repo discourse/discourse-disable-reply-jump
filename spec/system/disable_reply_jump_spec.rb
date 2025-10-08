@@ -3,7 +3,7 @@
 RSpec.describe "Disable Reply Jump", system: true do
   let!(:theme) { upload_theme_component }
 
-  fab!(:topic_1) { Fabricate(:topic) }
+  fab!(:topic_1, :topic)
   fab!(:post_1) do
     Fabricate(
       :post,
