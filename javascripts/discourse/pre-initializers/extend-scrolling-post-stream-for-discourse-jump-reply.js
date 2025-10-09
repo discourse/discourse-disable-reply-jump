@@ -7,7 +7,7 @@ export default {
   before: "inject-discourse-objects",
 
   initialize() {
-    withPluginApi("1.0.0", (api) => {
+    withPluginApi((api) => {
       withSilencedDeprecations("discourse.post-stream-widget-overrides", () => {
         api.modifyClass("component:scrolling-post-stream", {
           pluginId: "discourse-disable-reply-jump",
